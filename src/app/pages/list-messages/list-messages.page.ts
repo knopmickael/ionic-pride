@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
-
-import { DataService, Message } from '../services/data.service';
+import { DataService, Message } from '../../services/messages/data.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-list-messages',
+  templateUrl: 'list-messages.page.html',
+  styleUrls: ['list-messages.page.scss'],
 })
-export class HomePage {
-  constructor(private data: DataService) { }
+export class ListMessagesPage {
+  constructor(private data: DataService) {}
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -20,5 +19,4 @@ export class HomePage {
   getMessages(): Message[] {
     return this.data.getMessages();
   }
-
 }

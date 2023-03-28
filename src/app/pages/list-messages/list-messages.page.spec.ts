@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { MessageComponentModule } from '../message/message.module';
+import { MessageComponentModule } from '../../component/message/message.module';
 
-import { HomePage } from './home.page';
+import { HomePage } from './list-messages.page';
 
 describe('HomePage', () => {
   let component: HomePage;

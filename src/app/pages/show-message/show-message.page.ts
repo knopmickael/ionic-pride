@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService, Message } from '../services/data.service';
+import { DataService, Message } from '../../services/messages/data.service';
 
 @Component({
-  selector: 'app-view-message',
-  templateUrl: './view-message.page.html',
-  styleUrls: ['./view-message.page.scss'],
+  selector: 'app-show-message',
+  templateUrl: './show-message.page.html',
+  styleUrls: ['./show-message.page.scss'],
 })
-export class ViewMessagePage implements OnInit {
+export class ShowMessagePage implements OnInit {
   public message!: Message;
 
   constructor(
