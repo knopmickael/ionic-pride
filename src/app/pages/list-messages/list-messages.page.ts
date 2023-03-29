@@ -8,7 +8,7 @@ import { DataService, Message } from '../../services/messages/data.service';
   styleUrls: ['list-messages.page.scss'],
 })
 export class ListMessagesPage {
-  constructor(private data: DataService) {}
+  constructor(protected data: DataService) {}
 
   refresh(ev: any) {
     setTimeout(() => {

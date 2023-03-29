@@ -1,3 +1,93 @@
-<p>
-  form works!
-</p>
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="setOpen(true)" size="small" expand="block">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeForm()">Close</ion-button>
+        </ion-buttons>
+        <ion-title>Create Message</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="submitMessageForm()">Submit</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <form [formGroup]="messageForm">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">From Name</ion-label>
+            <ion-input type="text" formControlName="fromname"></ion-input>
+            <ion-note slot="helper">Enter the remetent name</ion-note>
+            <ion-note slot="error" *ngIf="
+              messageForm.get('fromname')?.hasError('required')
+              && messageForm.get('fromname')?.touched
+            ">
+              The From Name is required.
+            </ion-note>
+            <ion-note slot="error" *ngIf="
+              messageForm.get('fromname')?.hasError('minlength')
+              && messageForm.get('fromname')?.touched
+            ">
+              Please enter a valid From Name (minimum 3 characters).
+            </ion-note>
+            <ion-note slot="error" *ngIf="
+              messageForm.get('fromname')?.hasError('maxlength')
+              && messageForm.get('fromname')?.touched
+            ">
+              Please enter a valid From Name (maximum 20 characters).
+            </ion-note>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Subject</ion-label>
+            <ion-input type="text" formControlName="subject"></ion-input>
+            <ion-note slot="helper">Enter the message subject</ion-note>
+            <ion-note slot="error" *ngIf="
+              messageForm.get('subject')?.hasError('required')
+              && messageForm.get('subject')?.touched
+            ">
+              The Subject is required.
+            </ion-note>
+            <ion-note slot="error" *ngIf="
+              messageForm.get('subject')?.hasError('minlength')
+              && messageForm.get('subject')?.touched
+            ">
+              Please enter a valid Subject (minimum 3 characters).
+            </ion-note>
+            <ion-note slot="error" *ngIf="
+              messageForm.get('subject')?.hasError('maxlength')
+              && messageForm.get('subject')?.touched
+            ">
+              Please enter a valid Subject (maximum 20 characters).
+            </ion-note>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Date</ion-label>
+            <ion-input type="text" formControlName="date"></ion-input>
+            <ion-note slot="helper">Enter the message date</ion-note>
+            <ion-note slot="error" *ngIf="
+              messageForm.get('date')?.hasError('required')
+              && messageForm.get('date')?.touched
+            ">
+              The Date is required.
+            </ion-note>
+            <ion-note slot="error" *ngIf="
+              messageForm.get('date')?.hasError('pattern')
+              && messageForm.get('date')?.touched
+            ">
+              Please enter a valid Date (DD/MM/YYYY).
+            </ion-note>
+          </ion-item>
+        </ion-list>
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

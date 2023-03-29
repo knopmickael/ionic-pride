@@ -22,4 +22,6 @@
   <ion-list>
     <app-list-item *ngFor="let message of getMessages()" [message]="message"></app-list-item>
   </ion-list>
+
+  <app-form [dataServiceInstance]="data"></app-form>
 </ion-content>
