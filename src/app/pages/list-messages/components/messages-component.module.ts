@@ -5,11 +5,12 @@ import { RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MessageComponent } from './message.component';
+import { FormComponent } from './form/form.component';
+import { ListItemComponent } from './list-item/list-item.component';
 
 @NgModule({
   imports: [ CommonModule, FormsModule, IonicModule, RouterModule],
-  declarations: [MessageComponent],
-  exports: [MessageComponent]
+  declarations: [ListItemComponent, FormComponent],
+  exports: [ListItemComponent, FormComponent]
 })
 export class MessageComponentModule {}

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ListMessagesPage } from './list-messages.page';
 import { ListMessagesPageRoutingModule } from './list-messages-routing.module';
-import { MessageComponentModule } from '../../component/message/message.module';
+import { MessageComponentModule } from './components/messages-component.module';
 
 @NgModule({
   imports: [
