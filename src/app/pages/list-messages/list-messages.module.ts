@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ListMessagesPage } from './list-messages.page';
 import { ListMessagesPageRoutingModule } from './list-messages-routing.module';
-import { MessagesComponentsModule } from './components/messages-components.module';
+import { MessagesComponentsModule } from '../../components/messages/messages-components.module';
 
 @NgModule({
   imports: [

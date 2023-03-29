@@ -1,6 +1,9 @@
-<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+<ion-fab slot="fixed" vertical="bottom" horizontal="end" class="experiment">
+  <ion-fab-button (click)="confirmDelete()" *ngIf="isEdit" size="small" expand="block" color="danger">
+    <ion-icon name="trash-outline"></ion-icon>
+  </ion-fab-button>
   <ion-fab-button (click)="setOpen(true)" size="small" expand="block">
-    <ion-icon name="add-outline"></ion-icon>
+    <ion-icon [name]="isEdit ? 'pencil-outline' : 'add-outline'"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 
@@ -9,7 +12,7 @@
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-button (click)="closeForm()">Close</ion-button>
+          <ion-button (click)="setOpen(false)">Close</ion-button>
         </ion-buttons>
         <ion-title>Create Message</ion-title>
         <ion-buttons slot="end">

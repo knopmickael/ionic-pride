@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Message } from '../../../../services/messages/data.service';
+import { Message } from '../../../services/messages/data.service';
 
 @Component({
   selector: 'app-list-item',
