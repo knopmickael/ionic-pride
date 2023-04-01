@@ -25,7 +25,7 @@
       <form [formGroup]="employeeForm">
         <ion-list>
 
-          <ion-item lines="none" class="mt-10">
+          <ion-item *ngIf="isEdit" lines="none" class="mt-10">
             <ion-avatar id="profile-picture" (click)="renderPicture()" slot="start">
               <img alt="Employee profile picture" [src]="profileImg" />
             </ion-avatar>

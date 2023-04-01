@@ -32,7 +32,7 @@ export class FormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+
     this.isEdit = this.employee ? true : false;
 
     this.employeeForm = new FormGroup({
@@ -78,10 +78,8 @@ export class FormComponent implements OnInit {
       ]),
     });
 
-    if (this.isEdit) {
+    if (this.isEdit)
       this.loadProfilePicture();
-      this.supportURL = this.profileImg;
-    }
   }
 
   setFormModalOpen(isOpen: boolean) {
@@ -130,19 +128,24 @@ export class FormComponent implements OnInit {
 
       if (this.isEdit) {
         if (this.loadProfilePicture) {
-          if (!resetedImg && this.profileImg != this.supportURL)
+          if (!resetedImg && this.generatedPicture)
             await this.photoService.persistPicture(this.generatedPicture, submittedId);
-          else await this.photoService.deletePicture(this.employee.id);
+          if (resetedImg)
+            await this.photoService.deletePicture(this.employee.id);
         }
-
       } else {
         if (!resetedImg) {
           await this.photoService.persistPicture(this.generatedPicture, submittedId);
+          this.profileImg = 'https://ionicframework.com/docs/img/demos/avatar.svg';
           this.employeeForm.reset();
         }
       }
     }
+
     this.setFormModalOpen(false);
+    setTimeout(() => {
+      this.router.navigateByUrl('/');
+    }, 1);
   }
 
   async loadProfilePicture() {

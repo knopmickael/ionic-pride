@@ -1,30 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
+import {
+  Camera,
+  CameraResultType,
+  CameraSource,
+  Photo,
+} from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { Platform } from '@ionic/angular';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
 export class PhotoService {
-
   private PHOTO_STORAGE: string = 'profile-pictures';
 
   constructor(private platform: Platform) {}
 
+  public async clearData() {
+    Preferences.set({
+      key: this.PHOTO_STORAGE,
+      value: JSON.stringify([]),
+    });
+  }
+
   public async fetchByUserID(uId: number) {
-    
     const photoList = await Preferences.get({ key: this.PHOTO_STORAGE });
     let photos = JSON.parse(photoList.value) || [];
 
-    if (!photos.length)
-      return false;
+    if (!photos.length) return false;
 
-    let photo = photos.find(p => p.userId === uId);
+    let photo = photos.find((p) => p.userId === uId);
 
     if (this.platform.is('hybrid')) {
       const readFile = await Filesystem.readFile({
@@ -38,37 +45,33 @@ export class PhotoService {
   }
 
   public async openCameraPlugin() {
-
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
-      quality: 100
+      quality: 100,
     });
 
     return capturedPhoto;
   }
 
   public async persistPicture(generatedPicture: Photo, userId: number) {
-    
     const savedImageFile = await this.savePicture(generatedPicture, userId);
 
     const photoList = await Preferences.get({ key: this.PHOTO_STORAGE });
     let photos = JSON.parse(photoList.value) || [];
 
-    let index = photos.findIndex(p => p.userId === userId);
-    if (index !== -1)
-      photos.splice(index, 1);
-    
+    let index = photos.findIndex((p) => p.userId === userId);
+    if (index !== -1) photos.splice(index, 1);
+
     photos.unshift(savedImageFile);
 
     Preferences.set({
       key: this.PHOTO_STORAGE,
-      value: JSON.stringify(photos)
+      value: JSON.stringify(photos),
     });
   }
 
   private async savePicture(photo: Photo, userId: number) {
-
     const base64Data = await this.readAsBase64(photo);
 
     const fileName = 'profile.jpeg';
@@ -111,24 +114,24 @@ export class PhotoService {
   }
 
   public async deletePicture(userId: number) {
-
     const photoList = await Preferences.get({ key: this.PHOTO_STORAGE });
     let photos = JSON.parse(photoList.value) || [];
-    
-    let index = photos.findIndex(p => p.userId === userId);
-    if (index === -1)
-      return false;
+
+    let index = photos.findIndex((p) => p.userId === userId);
+    if (index === -1) return false;
 
     photos.splice(index, 1);
 
     Preferences.set({
       key: this.PHOTO_STORAGE,
-      value: JSON.stringify(photos)
+      value: JSON.stringify(photos),
     });
 
     if (this.platform.is('hybrid')) {
       let photo = await this.fetchByUserID(userId);
-      const filename = photo.filepath.substr(photo.filepath.lastIndexOf('/') + 1);
+      const filename = photo.filepath.substr(
+        photo.filepath.lastIndexOf('/') + 1
+      );
       await Filesystem.deleteFile({
         path: filename,
         directory: Directory.Data,

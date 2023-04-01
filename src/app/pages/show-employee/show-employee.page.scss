@@ -38,3 +38,33 @@ h1 {
 p {
   line-height: 22px;
 }
+
+.p-25 {
+  padding: 25px !important;
+  padding-right: 35px !important;
+}
+
+.px-25 {
+  padding: 0 25px !important;
+  padding-right: 35px !important;
+}
+
+#avatar {
+  width: 100px;
+  height: 100px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.sub-title {
+  padding-top: 15px !important;
+  border-top: 1px solid lightgray;
+}
+
+.sb-item {
+  color: gray !important;
+  line-height: 1.0;
+  font-size: 16px;
+}

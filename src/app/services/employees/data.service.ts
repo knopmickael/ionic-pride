@@ -40,7 +40,7 @@ export class DataService {
       state: 'US',
       jobTitle: 'Developer',
       phone: '888 888 8888'
-    },
+    }
   ];
 
   private employeesSubject = new BehaviorSubject<Employee[]>(this.employees);
