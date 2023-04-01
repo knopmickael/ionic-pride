@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService, Message } from '../../services/messages/data.service';
+import { DataService, Employee } from '../../services/employees/data.service';
 
 @Component({
-  selector: 'app-show-message',
-  templateUrl: './show-message.page.html',
-  styleUrls: ['./show-message.page.scss'],
+  selector: 'app-show-employee',
+  templateUrl: './show-employee.page.html',
+  styleUrls: ['./show-employee.page.scss'],
 })
-export class ShowMessagePage implements OnInit {
-  public message: Message | undefined;
+export class ShowEmployeePage implements OnInit {
+  public employee: Employee | undefined;
 
   constructor(
     protected data: DataService,
@@ -17,8 +17,8 @@ export class ShowMessagePage implements OnInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.data.getMessageById(parseInt(id, 10)).subscribe((message) => {
-      this.message = message;
+    this.data.getEmployeeById(parseInt(id, 10)).subscribe((employee) => {
+      this.employee = employee;
     });
   }
 

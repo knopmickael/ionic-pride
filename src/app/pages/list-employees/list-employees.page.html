@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Inbox
+      Employee Management
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,13 +14,13 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">
-        Inbox
+        Employee Management
       </ion-title>
     </ion-toolbar>
   </ion-header>
   
-  <ion-list>
-    <app-list-item *ngFor="let message of getMessages()" [message]="message"></app-list-item>
+  <ion-list class="mx-25">
+    <app-list-item *ngFor="let employee of getEmployees()" [employee]="employee"></app-list-item>
   </ion-list>
 
   <app-form [dataServiceInstance]="data"></app-form>

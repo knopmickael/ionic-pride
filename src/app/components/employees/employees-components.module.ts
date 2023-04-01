@@ -13,4 +13,4 @@ import { ListItemComponent } from './list-item/list-item.component';
   declarations: [ListItemComponent, FormComponent],
   exports: [ListItemComponent, FormComponent]
 })
-export class MessagesComponentsModule {}
+export class EmployeesComponentsModule {}
